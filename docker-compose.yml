@@ -1,15 +1,21 @@
 version: '3.9'
 
 services:
-  postgres:
+  postgres_dev:
     image: postgres
-    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
     ports:
       - '5432:5432'
     env_file:
       - .env
-    volumes:
-      - 'postgres:/var/lib/postgresql/data'
+  postgres_test:
+    image: postgres
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_HOST}
 
 volumes:
   postgres:

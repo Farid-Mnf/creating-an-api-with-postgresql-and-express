@@ -3,13 +3,48 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
+## Database Tables
+# users
+(
+    id: number primary key
+    first_name: string
+    last_name: string
+    password_digest: string
+)
+
+# orders
+(
+    id: number primary key,
+    status: string,
+    user_id: number foreign key references to 'users' table
+)
+
+# products
+(
+    id: number primary key,
+    name: string,
+    price: number
+)
+
+# orders_products
+(
+    id: number primary key,
+    quantity: number,
+    order_id: number references orders table,
+    product_id: number references products table
+)
+
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+- Index `GET` /products
+- Show  `GET` /products/:id
+- Create [token required] `POST` /products
+    {
+        "name": "TV",
+        "price": "99323"
+    }
+    authentication header: Bearer tttttt.tttttt.tttttt
+
 
 #### Users
 - Index [token required]
@@ -25,13 +60,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 -  id
 - name
 - price
-- [OPTIONAL] category
 
 #### User
 - id
 - firstName
 - lastName
-- password
+- password_digest
 
 #### Orders
 - id
@@ -39,4 +73,5 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
 
