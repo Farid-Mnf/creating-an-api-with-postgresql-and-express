@@ -4,22 +4,33 @@
 
 #### copy .env file variable to your new .env file
 POSTGRES_HOST=172.17.0.1
+
 POSTGRES_DB=storefront
+
 POSTGRES_TEST_DB=storefront_test
+
 POSTGRES_TEST_PORT=5433
+
 POSTGRES_USER=magical_user
+
 POSTGRES_PASSWORD=password123
+
 SALT_ROUNDS=10
+
 JWT_SECRET=secret_key
+
 ENV=dev
 
 #### setup databases
 Get into project folder => `cd creating-an-api-with-postgresql-and-express/`
+
 Start Dev and Test databases using docker-compose => `docker-compose up --force-recreate`
 
 #### ports
 express server port => `3000`
+
 Dev database port => `5432`
+
 Test database port => `5433`
 
 #### install npm packages
