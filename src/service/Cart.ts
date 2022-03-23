@@ -34,9 +34,7 @@ export class Cart {
     async getOrdersProducts(): 
     Promise<{"order_id": number, "product_id": number, "quantity": number, "user_id": number, "status": string}[]>
     {
-        try {
-            console.log(1);
-            
+        try {            
             const conn = await Client.connect();
             const sql = "select order_id, product_id, quantity, user_id, status from orders o inner join orders_products op on o.id=op.order_id inner join products p on op.product_id=p.id";
             const result = await conn.query(sql);

@@ -9,7 +9,7 @@ export type User = {
     password_digest?: string;
 }
 
-type JWT = {
+export type JWT = {
     jwt: string
 }
 
