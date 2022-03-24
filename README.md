@@ -36,6 +36,11 @@ Test database port => `5433`
 #### install npm packages
 install package in package.json file => `npm install`
 
+#### usage
+run tests => `npm run test`
+
+start project => `npm run start`
+
 
 
 
