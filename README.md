@@ -39,9 +39,9 @@ install package in package.json file => `npm install`
 #### usage
 run tests => `npm run test`
 
+use db-migrate to create Dev database schema => `db-migrate up`
+
 start project => `npm run start`
-
-
 
 
 ## Getting Started
