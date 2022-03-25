@@ -14,31 +14,42 @@ export const tokenMiddleware = (req: Request, res: Response, next: NextFunction)
         } catch (err) {
             res.json("invalid jwt");
         }
-
-    }else{
+    } else {
         res.json("invalid JWT")
+    }
+}
+
+const createUser = async (req: Request, res: Response) => {
+    try {
+        const first_name = req.body.first_name;
+        const last_name = req.body.last_name
+        const password = req.body.password;
+        const jwt = await userModel.create(first_name, last_name, password);
+        res.json(jwt);
+    } catch (err) {
+        throw new Error("create user error: " + err)
+    }
+}
+
+const showUser = async (req: Request, res: Response) => {
+    try {
+        const id: string = req.params.id as string;
+        const user: User = await userModel.show(id);
+        res.json(user);
+    } catch (err) {
+        throw new Error("show user error: " + err)
     }
 
 }
 
-const createUser = async (req: Request, res: Response) => {
-    const first_name = req.body.first_name;
-    const last_name = req.body.last_name
-    const password = req.body.password;
-    const jwt = await userModel.create(first_name, last_name, password);
-    res.json(jwt);
-}
-
-const showUser = async (req: Request, res: Response) => {
-    const id: string = req.params.id as string;
-    const user: User = await userModel.show(id);
-    res.json(user);
-}
-
-
 const index = async (req: Request, res: Response) => {
-    const users = await userModel.index();
-    res.json(users);
+    try {
+        const users = await userModel.index();
+        res.json(users);
+    } catch (err) {
+        throw new Error("index users error: " + err)
+    }
+
 }
 
 export const userRoutes = (app: Application) => {

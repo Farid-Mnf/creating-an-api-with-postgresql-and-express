@@ -5,19 +5,31 @@ import { tokenMiddleware } from "./userHandler";
 const productModel = new ProductModel();
 
 const index = async (req: Request, res: Response) => {
-    const products = await productModel.index();
-    res.json(products);
+    try {
+        const products = await productModel.index();
+        res.json(products);
+    } catch (err) {
+        throw new Error("index products error: " + err);
+    }
 }
 
 const show = async (req: Request, res: Response) => {
-    const product = await productModel.show((req.params.id as unknown) as number);
-    res.json(product);
+    try {
+        const product = await productModel.show((req.params.id as unknown) as number);
+        res.json(product);
+    } catch (err) {
+        throw new Error("show product error: " + err);
+    }
 }
 
 const create = async (req: Request, res: Response) => {
-    const reqProduct: Product = req.body;
-    const product = await productModel.create(reqProduct);
-    res.json(product);
+    try {
+        const reqProduct: Product = req.body;
+        const product = await productModel.create(reqProduct);
+        res.json(product);
+    } catch (err) {
+        throw new Error("create product error: " + err);
+    }
 }
 
 export const productRoutes = (app: Application) => {

@@ -98,16 +98,6 @@ describe('test endpoints:', () => {
         expect(jwtObject.length).toBeGreaterThanOrEqual(30);
     })
 
-    it('test get user\'s current order', async () => {
-        const response = await request
-            .get('/orders/1')
-            .set('Authorization', 'Bearer ' + jwt.jwt)
-            .set('Accept', 'application/json');
-
-        expect(response.body.status).toEqual('active');
-
-    })
-
     it('test create order by user_id', async () => {
         const response = await request
             .post('/orders/1')
@@ -116,6 +106,16 @@ describe('test endpoints:', () => {
 
         expect(response.body.status).toEqual('active');
         expect(response.body.user_id).toEqual(1);
+    })
+
+    it('test get user\'s current order', async () => {
+        const response = await request
+            .get('/orders/1')
+            .set('Authorization', 'Bearer ' + jwt.jwt)
+            .set('Accept', 'application/json');
+
+        expect(response.body.status).toEqual('active');
+
     })
 
     it('test fetch list of orders_products', async () => {
